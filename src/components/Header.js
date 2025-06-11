@@ -5,8 +5,9 @@ const Header = () => {
         <header>
             <h1>Header Component</h1>
             <h2>hiii</h2>
+            <h3>hiii</h3>
         </header>
-        
+
     );
 };
 
