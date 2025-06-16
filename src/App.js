@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './components/style.css';
 
-
 import Header from './components/Header';
 import Footer from './components/footer';
 import Career from './pages/career';
@@ -23,12 +22,15 @@ import Software from './pages/software';
 import WebDevelopment from './pages/WebDevelopment';
 import AppDevelopment from './pages/AppDevelopment';
 
+import usePageScripts from './hooks/usePageScripts'; // ✅ import hook here
+
 function App() {
   return (
     <Router>
+      {/* ✅ Hook MUST be inside Router */}
+      <PageScriptsHandler />
       <Header />
       <Routes>
-        
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -43,13 +45,19 @@ function App() {
         <Route path="/ecommerce" element={<Ecommerce />} />
         <Route path="/dynamic" element={<Dynamic />} />
         <Route path="/software" element={<Software />} />
-        <Route path="*" element={<Home/>} />
         <Route path="/WebDevelopment" element={<WebDevelopment />} />
         <Route path="/AppDevelopment" element={<AppDevelopment />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </Router>
   );
+}
+
+// ✅ Separate component to safely use hook inside Router
+function PageScriptsHandler() {
+  usePageScripts();
+  return null;
 }
 
 export default App;
